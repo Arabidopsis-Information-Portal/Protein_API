@@ -36,14 +36,14 @@ def textToInfo(text):
     lines = text.split("\n")
     tempLine = lines[0]
     ID = tempLine[5:17]
-    print "ID: " + ID
+    #print "ID: " + ID
     tempLine = lines[5]
     name = tempLine[string.find(tempLine, "Full=", 0, len(tempLine))+5:string.find(tempLine, " {", 0, len(tempLine))]
-    print "Protein Name: " + name
+    #print "Protein Name: " + name
     tempLine = lines[6]
     gene = tempLine[string.find(tempLine, "Name=", 0, len(tempLine))+5:string.find(tempLine, " {", 0, len(tempLine))]
-    print "Gene: " + gene
+    #print "Gene: " + gene
     organism = lines[9][5:len(lines[9])-1]
-    print "Organism: " + organism
+    #print "Organism: " + organism
     info = {"ID": ID, "Protein_Name": name, "Gene": gene, "Organism": organism}
     return json.dumps(info)
