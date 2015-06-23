@@ -4,26 +4,18 @@
 name: protein_api
 version: 0.1
 type: query
-main_module: main.py
+main_module: protein.py
 url: http://www.uniprot.org/
 description: 'An API that returns basic information about a protein given search parameters'
 endpoints:
   /search:
     description: 'test endpoints'
     parameters:
-      - name: parameter1
-        description:
-        type: string
-        required: true
-      - name: parameter2
-        description:
+      - name: Protein ID Number
+        description: "Search for a protein based on an ID"
         type: string
         required: false
-      - name: parameter3
-        description:
-        type: string
-        required: true
-      - name: parameter4
-        description:
+      - name: Keywords
+        description: "Search for proteins based on keywords in the protein name"
         type: string
         required: false
