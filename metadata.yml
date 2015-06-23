@@ -5,5 +5,5 @@ name: protein_api
 version: 0.1
 type: query
 main_module: main.py
-url: http://example.com
+url: http://www.uniprot.org/
 description: 'An API that returns basic information about a protein given search parameters'
