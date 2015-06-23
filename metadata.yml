@@ -7,3 +7,23 @@ type: query
 main_module: main.py
 url: http://www.uniprot.org/
 description: 'An API that returns basic information about a protein given search parameters'
+endpoints:
+  /search:
+    description: 'test endpoints'
+    parameters:
+      - name: parameter1
+        description:
+        type: string
+        required: true
+      - name: parameter2
+        description:
+        type: string
+        required: false
+      - name: parameter3
+        description:
+        type: string
+        required: true
+      - name: parameter4
+        description:
+        type: string
+        required: false
