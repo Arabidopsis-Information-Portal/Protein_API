@@ -9,9 +9,9 @@ url: http://www.uniprot.org/
 description: 'An API that returns basic information about a protein given search parameters'
 endpoints:
   /search:
-    description: 'test endpoints'
+    description: 'In Development'
     parameters:
-      - name: Protein ID Number
+      - name: ID
         description: "Search for a protein based on an ID"
         type: string
         required: false
