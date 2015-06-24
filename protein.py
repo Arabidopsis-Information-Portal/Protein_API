@@ -5,21 +5,21 @@ import string
 
 #functions
 def search(parameters):
-    if "ID" in parameters.keys():
-        return IDSearch(parameters["ID"])
+    if "Identifier" in parameters.keys():
+        return identifierSearch(parameters["ID"])
 
-#Finds a single protein with the given ID
-def IDSearch(ID):
-    url = "http://www.uniprot.org/uniprot/" + str(ID) + ".txt"
+#Finds a single protein with the given identifier
+def identifierSearch(identifier):
+    url = "http://www.uniprot.org/uniprot/" + str(identifier) + ".txt"
     text = openurl(url)
     if text == -1:
-        print "No protein with this ID was found."
+        print "No protein with this identifier was found."
     info = textToInfo(text)
     print info
 
 #Finds a list of proteins given some keywords
 #These keywords will be searched for in the names of the proteins
-def keywordSearch(keywords):
+def termSearch(keywords):
     print "stuff"
 
 # Opens a given url and returns the text. It will specifically return -1 if it
@@ -35,8 +35,8 @@ def openurl(url):
 def textToInfo(text):
     lines = text.split("\n")
     tempLine = lines[0]
-    ID = tempLine[5:17]
-    #print "ID: " + ID
+    identifier = tempLine[5:17]
+    #print "Identifier: " + identifier
     tempLine = lines[5]
     name = tempLine[string.find(tempLine, "Full=", 0, len(tempLine))+5:string.find(tempLine, " {", 0, len(tempLine))]
     #print "Protein Name: " + name
@@ -45,5 +45,5 @@ def textToInfo(text):
     #print "Gene: " + gene
     organism = lines[9][5:len(lines[9])-1]
     #print "Organism: " + organism
-    info = {"ID": ID, "Protein_Name": name, "Gene": gene, "Organism": organism}
+    info = {"Identifier": identifier, "Protein_Name": name, "Gene": gene, "Organism": organism}
     return json.dumps(info)
