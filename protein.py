@@ -44,7 +44,6 @@ def textToInfo(text):
     #print "Protein Name: " + name
     lineNum+=1
     if lines[lineNum][5] == " ":
-        print "in if"
         lineNum+=1
     tempLine = lines[lineNum]
     gene = tempLine[string.find(tempLine, "Name=", 0, len(tempLine))+5:string.find(tempLine, " {", 0, len(tempLine))]
