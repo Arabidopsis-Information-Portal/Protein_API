@@ -11,11 +11,11 @@ endpoints:
   /search:
     description: 'In Development'
     parameters:
-      - name: ID
-        description: "Search for a protein based on an ID"
+      - name: Identifier
+        description: "Search for a protein based on an identifier"
         type: string
         required: false
-      - name: Keywords
-        description: "Search for proteins based on keywords in the protein name"
+      - name: Terms
+        description: "Search for proteins based on terms in the protein name"
         type: string
         required: false
