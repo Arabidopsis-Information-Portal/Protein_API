@@ -6,7 +6,7 @@ import string
 #functions
 def search(parameters):
     if "Identifier" in parameters.keys():
-        return identifierSearch(parameters["ID"])
+        return identifierSearch(parameters["Identifier"])
 
 #Finds a single protein with the given identifier
 def identifierSearch(identifier):
