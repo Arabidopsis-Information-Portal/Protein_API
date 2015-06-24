@@ -33,23 +33,25 @@ def openurl(url):
 #Parses a page from Uniprot to obtain basic information about a protein
 #Returns the information in JSON form
 def textToInfo(text):
-    lineNum = 0
-    lines = text.split("\n")
-    tempLine = lines[lineNum]
-    identifier = tempLine[5:17]
-    #print "Identifier: " + identifier
-    lineNum+=5
-    tempLine = lines[lineNum]
-    name = tempLine[string.find(tempLine, "Full=", 0, len(tempLine))+5:string.find(tempLine, " {", 0, len(tempLine))]
-    #print "Protein Name: " + name
-    lineNum+=1
-    if lines[lineNum][5] == " ":
-        lineNum+=1
-    tempLine = lines[lineNum]
-    gene = tempLine[string.find(tempLine, "Name=", 0, len(tempLine))+5:string.find(tempLine, " {", 0, len(tempLine))]
-    #print "Gene: " + gene
-    lineNum+=3
-    organisms = lines[lineNum][5:len(lines[lineNum])-1]
-    #print "Organisms: " + organisms
+    if string.find(text, "ID   ") == -1:
+        identifier = "not found"
+    else:
+        identifier = text[string.find(text, "ID   ")+5:string.find(text, "ARATH")+5]
+
+    if string.find(text, "RecName: Full=") == -1:
+        name = "not found"
+    else:
+        name = text[string.find(text, "RecName: Full=")+14:string.find(text, ";", string.find(text, "RecName"))]
+
+    if string.find(text, "GN   Name=") == -1:
+        gene = "not found"
+    else:
+        gene = text[string.find(text, "GN   Name=")+10:string.find(text, ";", string.find(text, "GN   Name="))]
+
+    if string.find(text, "OS   ") == -1:
+        organisms = "not found"
+    else:
+        organisms = text[string.find(text, "OS   ")+5:string.find(text, ".", string.find(text, "OS   "))]
+
     info = {"Identifier": identifier, "Protein_Name": name, "Gene": gene, "Organisms": organisms}
     return json.dumps(info)
