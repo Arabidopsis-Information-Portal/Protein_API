@@ -10,9 +10,6 @@ def search(parameters):
 
         identifierInput = parameters["Identifier"]
 
-        #print all names when input is empty
-        if identifierInput == "":
-            print getAllIdentifiers()
         #print info of a single protein when input is a single identifier
         elif identifierInput.find(",") == -1:
             print getProtein(identifierInput)
@@ -25,7 +22,9 @@ def search(parameters):
                 strippedIdentifierList.append(i)
             print getProteins(strippedIdentifierList)
     else:
-        raise Exception("No identifier")
+        #print all names when input is empty
+        if identifierInput == "":
+            print getAllIdentifiers()
 
 #returns a JSON representing a list of all protein identifiers
 def getAllIdentifiers():
