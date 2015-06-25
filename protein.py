@@ -19,9 +19,12 @@ def search(parameters):
         #print info of all specified proteins when input has multiple identifiers
         else:
             identifierList = identifierInput.split(",")
+            strippedIdentifierList = []
             for i in identifierList:
-                i.strip()
-            print getProteins(identifierList)
+                i = i.strip()
+                strippedIdentifierList.append(i)
+            print strippedIdentifierList
+            print getProteins(strippedIdentifierList)
     else:
         raise Exception("No identifier")
 
