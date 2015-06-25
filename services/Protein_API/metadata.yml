@@ -4,7 +4,8 @@
 name: protein_api
 version: 0.1
 type: query
-main_module: services.Protein_API.protein.py
+icon: 
+main_module: protein.py
 url: https://apps.araport.org/sandbox-thalemine/begin.do
 description: 'An API that returns basic information about a protein given search parameters'
 endpoints:
@@ -29,3 +30,8 @@ endpoints:
 #        required: false
 requirements:
   - intermine
+authors:
+  - name: Jason Kuo
+    email: jkuo@jcvi.org
+    sponsor_organization: JCVI
+    sponsor_uri: http://www.jcvi.org/
