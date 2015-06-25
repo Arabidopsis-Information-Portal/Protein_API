@@ -9,7 +9,8 @@ def search(parameters):
     if "Identifier" in parameters.keys():
 
         identifierInput = parameters["Identifier"]
-
+        if identifierInput == "":
+            print getAllIdentifiers()
         #print info of a single protein when input is a single identifier
         elif identifierInput.find(",") == -1:
             print getProtein(identifierInput)
@@ -23,8 +24,7 @@ def search(parameters):
             print getProteins(strippedIdentifierList)
     else:
         #print all names when input is empty
-        if identifierInput == "":
-            print getAllIdentifiers()
+        print getAllIdentifiers()
 
 #returns a JSON representing a list of all protein identifiers
 def getAllIdentifiers():
@@ -77,4 +77,4 @@ def getProteins(identifierList):
         length = entry["length"]
         protein = {"Primary Identifier": identifier, "Name": name, "Uniprot Name": uniprotName, "Length": length}
         proteinList.append(json.dumps(protein))
-    return proteinList
+    return json.dumps(proteinList)
