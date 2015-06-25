@@ -17,11 +17,11 @@ endpoints:
         required: false
       - name: Start
         description: "Display results starting from this number until the End"
-        type: integer
+        type: string
         required: false
       - name: End
         description: "Display results starting from Start until this number"
-        type: integer
+        type: string
         required: false
 #      - name: Terms
 #        description: "Search for proteins based on terms in the protein name"

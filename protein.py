@@ -33,11 +33,11 @@ def noInput(parameters):
     end = -1
     #assume user starts counting with 1
     if "Start" in parameters.keys():
-        start = parameters["Start"] - 1
+        start = int(parameters["Start"]) - 1
     else:
         start = 0
     if "End" in parameters.keys():
-        end = parameters["End"] - 1
+        end = int(parameters["End"]) - 1
     else:
         end = -1
     print getAllIdentifiers(start, end)
