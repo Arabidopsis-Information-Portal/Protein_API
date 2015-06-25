@@ -15,9 +15,17 @@ endpoints:
         description: "Search for a protein based on an identifier"
         type: string
         required: false
-      - name: Terms
-        description: "Search for proteins based on terms in the protein name"
-        type: string
+      - name: Start
+        description: "Display results starting from this number until the End"
+        type: number
         required: false
+      - name: End
+        description: "Display results starting from Start until this number"
+        type: number
+        required: false
+#      - name: Terms
+#        description: "Search for proteins based on terms in the protein name"
+#        type: string
+#        required: false
 requirements:
   - intermine

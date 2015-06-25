@@ -9,8 +9,9 @@ def search(parameters):
     if "Identifier" in parameters.keys():
 
         identifierInput = parameters["Identifier"]
+
         if identifierInput == "":
-            print getAllIdentifiers()
+            noInput(parameters)
         #print info of a single protein when input is a single identifier
         elif identifierInput.find(",") == -1:
             print getProtein(identifierInput)
@@ -23,13 +24,39 @@ def search(parameters):
                 strippedIdentifierList.append(i)
             print getProteins(strippedIdentifierList)
     else:
-        #print all names when input is empty
-        print getAllIdentifiers()
+        noInput(parameters)
+
+#print all names when input is empty
+def noInput(parameters):
+
+    start = 0
+    end = -1
+    #assume user starts counting with 1
+    if "Start" in parameters.keys():
+        start = parameters["Start"] - 1
+    else:
+        start = 0
+    if "End" in parameters.keys():
+        end = parameters["End"] - 1
+    else:
+        end = -1
+    print getAllIdentifiers(start, end)
 
 #returns a JSON representing a list of all protein identifiers
-def getAllIdentifiers():
+def getAllIdentifiers(start, end):
+    entries = query.rows()
+    if end == -1:
+        end = len(entries)
+    if start > end:
+        raise Exception("Start is greater than End")
     identifiers = []
-    for row in query.rows():
+    i = -1
+    for row in entries:
+        i+=1
+        if i < start:
+            continue
+        if i >= end:
+            break
         identifiers.append(row["primaryIdentifier"])
     return json.dumps(identifiers)
 
