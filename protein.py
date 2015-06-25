@@ -6,9 +6,9 @@ service = Service("https://apps.araport.org:443/sandbox-thalemine/service")
 query = service.new_query("Protein")
 
 def search(parameters):
-    if "Identifier" in parameters.keys():
+    if "Identifiers" in parameters.keys():
 
-        identifierInput = parameters["Identifier"]
+        identifierInput = parameters["Identifiers"]
 
         if identifierInput == "":
             noInput(parameters)
@@ -103,5 +103,5 @@ def getProteins(identifierList):
         uniprotName = entry["uniprotName"]
         length = entry["length"]
         protein = {"Primary Identifier": identifier, "Name": name, "Uniprot Name": uniprotName, "Length": length}
-        proteinList.append(json.dumps(protein))
+        proteinList.append(protein)
     return json.dumps(proteinList)

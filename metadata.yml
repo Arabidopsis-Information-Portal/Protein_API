@@ -11,7 +11,7 @@ endpoints:
   /search:
     description: 'In Development'
     parameters:
-      - name: Identifier
+      - name: Identifiers
         description: "Search for a protein based on an identifier. Having no identifiers lists all protein identfiers from the Start number to the End number. Multiple identifiers must be separated by a comma."
         type: string
         required: false
