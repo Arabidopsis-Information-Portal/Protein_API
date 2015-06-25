@@ -19,3 +19,5 @@ endpoints:
         description: "Search for proteins based on terms in the protein name"
         type: string
         required: false
+requirements:
+  - intermine
