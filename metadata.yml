@@ -12,16 +12,16 @@ endpoints:
     description: 'In Development'
     parameters:
       - name: Identifier
-        description: "Search for a protein based on an identifier"
+        description: "Search for a protein based on an identifier. Having no identifiers lists all protein identfiers from the Start number to the End number. Multiple identifiers must be separated by a comma."
         type: string
         required: false
       - name: Start
         description: "Display results starting from this number until the End"
-        type: number
+        type: integer
         required: false
       - name: End
         description: "Display results starting from Start until this number"
-        type: number
+        type: integer
         required: false
 #      - name: Terms
 #        description: "Search for proteins based on terms in the protein name"
