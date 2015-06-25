@@ -23,7 +23,6 @@ def search(parameters):
             for i in identifierList:
                 i = i.strip()
                 strippedIdentifierList.append(i)
-            print strippedIdentifierList
             print getProteins(strippedIdentifierList)
     else:
         raise Exception("No identifier")
