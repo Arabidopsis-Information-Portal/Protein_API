@@ -5,7 +5,7 @@ name: protein_api
 version: 0.1
 type: query
 main_module: protein.py
-url: http://www.uniprot.org/
+url: https://apps.araport.org/sandbox-thalemine/begin.do
 description: 'An API that returns basic information about a protein given search parameters'
 endpoints:
   /search:
