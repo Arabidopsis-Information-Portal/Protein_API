@@ -15,27 +15,32 @@ endpoints:
         description: "Search for a protein based on an identifier. Having no identifiers lists all protein identfiers from the Start number to the End number. Multiple identifiers must be separated by a comma."
         type: string
         required: false
-      - name: Start
+      - name: Information
+        description: "Information to output"
+        type: string
+        required: true
+        enum:
+          - "primaryIdentifier"
+          - "name"
+          - "uniprotName"
+          - "length"
+      - name: Begin
         description: "Display results starting from this number until the End"
         type: string
         required: false
       - name: End
-        description: "Display results starting from Start until this number"
+        description: "Display results starting from Begin until this number"
         type: string
         required: false
-#      - name: Terms
-#        description: "Search for proteins based on terms in the protein name"
-#        type: string
-#        required: false
   /list:
     description: "Lists identifiers of proteins"
     parameters:
-      - name: Start
+      - name: Begin
         description: "Display results starting from this number until the End"
         type: string
         required: false
       - name: End
-        description: "Display results starting from Start until this number"
+        description: "Display results starting from Begin until this number"
         type: string
         required: false
 requirements:

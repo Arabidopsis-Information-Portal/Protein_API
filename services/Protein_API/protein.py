@@ -28,31 +28,31 @@ def search(parameters):
 
 #print all names when input is empty
 def noInput(parameters):
-    start = 0
+    begin = 0
     end = -1
-    #assume user starts counting with 1
-    if "Start" in parameters.keys():
-        start = int(parameters["Start"]) - 1
+    #assume user begins counting with 1
+    if "Begin" in parameters.keys():
+        begin = int(parameters["Begin"]) - 1
     else:
-        start = 0
+        begin = 0
     if "End" in parameters.keys():
         end = int(parameters["End"]) - 1
     else:
         end = -1
-    print getAllIdentifiers(start, end)
+    print getAllIdentifiers(begin, end)
 
 #returns a JSON representing a list of all protein identifiers
-def getAllIdentifiers(start, end):
+def getAllIdentifiers(begin, end):
     entries = query.rows()
     if end == -1:
         end = len(entries)
-    if start > end:
-        raise Exception("Start is greater than End")
+    if begin > end:
+        raise Exception("Begin is greater than End")
     identifiers = []
     i = -1
     for row in entries:
         i+=1
-        if i < start:
+        if i < begin:
             continue
         if i >= end:
             break
@@ -71,7 +71,7 @@ def getProtein(identifier):
 
     #in case the protein is not found with the identifier
     if entry == None:
-        return json.dumps({"Protein": "not found"})
+        raise Exception("Protein not found")
 
     #retrieve info about protein
     name = entry["name"]
@@ -94,8 +94,7 @@ def getProteins(identifierList):
 
         #in case the protein is not found with the identifier
         if entry == None:
-            proteinList.append(json.dumps({identifier: "not found"}))
-            break
+            raise Exception("One or more proteins were not found")
 
         #retrieve info about protein
         name = entry["name"]
