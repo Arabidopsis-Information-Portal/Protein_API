@@ -105,3 +105,9 @@ def getProteins(identifierList):
         protein = {"Primary Identifier": identifier, "Name": name, "Uniprot Name": uniprotName, "Length": length}
         proteinList.append(protein)
     return json.dumps(proteinList)
+
+
+
+
+def list(parameters):
+    noInput(parameters)

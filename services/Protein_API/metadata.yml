@@ -9,7 +9,7 @@ url: https://apps.araport.org/sandbox-thalemine/begin.do
 description: "An API that returns basic information about a protein given search parameters"
 endpoints:
   /search:
-    description: "In Development"
+    description: "Finds and returns information about a protein given its identifier"
     parameters:
       - name: Identifiers
         description: "Search for a protein based on an identifier. Having no identifiers lists all protein identfiers from the Start number to the End number. Multiple identifiers must be separated by a comma."
@@ -27,6 +27,17 @@ endpoints:
 #        description: "Search for proteins based on terms in the protein name"
 #        type: string
 #        required: false
+  /list:
+    description: "Lists identifiers of proteins"
+    parameters:
+      - name: Start
+        description: "Display results starting from this number until the End"
+        type: string
+        required: false
+      - name: End
+        description: "Display results starting from Start until this number"
+        type: string
+        required: false
 requirements:
   - intermine
 authors:
