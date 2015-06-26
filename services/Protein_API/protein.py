@@ -28,7 +28,6 @@ def search(parameters):
 
 #print all names when input is empty
 def noInput(parameters):
-    print parameters
     start = 0
     end = -1
     #assume user starts counting with 1
