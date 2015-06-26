@@ -32,11 +32,11 @@ def noInput(parameters):
     start = 0
     end = -1
     #assume user starts counting with 1
-    if "Start" in parameters.keys():
+#    if "Start" in parameters.keys():
 #        start = int(parameters["Start"]) - 1
     else:
         start = 0
-    if "End" in parameters.keys():
+#    if "End" in parameters.keys():
 #        end = int(parameters["End"]) - 1
     else:
         end = -1
