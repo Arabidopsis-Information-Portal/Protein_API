@@ -2,7 +2,7 @@ import query
 import json
 from intermine.webservice import Service
 
-service = Service("https://apps.araport.org:443/sandbox-thalemine/service")
+service = Service("https://apps.araport.org:443/thalemine/service")
 query = service.new_query("Protein")
 
 def search(parameters):
