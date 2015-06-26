@@ -34,12 +34,12 @@ def noInput(parameters):
     #assume user starts counting with 1
 #    if "Start" in parameters.keys():
 #        start = int(parameters["Start"]) - 1
-    else:
-        start = 0
+#    else:
+#        start = 0
 #    if "End" in parameters.keys():
 #        end = int(parameters["End"]) - 1
-    else:
-        end = -1
+#    else:
+#        end = -1
     print getAllIdentifiers(start, end)
 
 #returns a JSON representing a list of all protein identifiers
