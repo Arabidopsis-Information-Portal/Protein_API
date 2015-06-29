@@ -19,6 +19,7 @@ endpoints:
         description: "Information to output"
         type: string
         required: true
+        default: primaryIdentifier
         enum:
           - "primaryIdentifier"
           - "name"
