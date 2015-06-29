@@ -79,8 +79,14 @@ def getProtein(identifier, info):
     #length = entry["length"]
     #protein = {"Primary Identifier": identifier, "Name": name, "Uniprot Name": uniprotName, "Length": length}
     infoValue = entry[info]
-    protein = {info: infoValue}
-    return json.dumps(protein)
+    multiValue = []
+    if type(infoValue) is list:
+        for value in infoValue:
+            multiValue.append({info: value})
+        return json.dumps(multiValue)
+    else:
+        protein = {info: infoValue}
+        return json.dumps(protein)
 
 #returns info about all proteins in a given list of identifiers
 def getProteins(identifierList, info):
@@ -104,8 +110,14 @@ def getProteins(identifierList, info):
         #length = entry["length"]
         #protein = {"Primary Identifier": identifier, "Name": name, "Uniprot Name": uniprotName, "Length": length}
         infoValue = entry[info]
-        protein = {info: infoValue}
-        proteinList.append(protein)
+        multiValue = []
+        if type(infoValue) is list:
+            for value in infoValue:
+                multiValue.append({info: value})
+            proteinList.append(multiValue)
+        else:
+            protein = {info: infoValue}
+            proteinList.append(protein)
     return json.dumps(proteinList)
 
 
