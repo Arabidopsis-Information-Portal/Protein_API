@@ -68,4 +68,4 @@ authors:
     sponsor_organization: JCVI
     sponsor_uri: http://www.jcvi.org/
 whitelist:
-  - https://apps.araport.org/thalemine/begin.do
+  - apps.araport.org/thalemine
