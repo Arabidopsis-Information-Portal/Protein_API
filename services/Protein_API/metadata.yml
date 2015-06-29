@@ -24,6 +24,7 @@ endpoints:
           - "name"
           - "uniprotName"
           - "length"
+          - "crossReferences.identifier"
       - name: Begin
         description: "Display results starting from this number until the End"
         type: string
