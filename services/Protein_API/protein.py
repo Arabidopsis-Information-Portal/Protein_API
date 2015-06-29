@@ -14,7 +14,7 @@ def search(parameters):
             noInput(parameters)
         #print info of a single protein when input is a single identifier
         elif identifierInput.find(",") == -1:
-            print getProtein(identifierInput)
+            print getProtein(identifierInput, parameters["Information"])
         #print info of all specified proteins when input has multiple identifiers
         else:
             identifierList = identifierInput.split(",")
@@ -22,7 +22,7 @@ def search(parameters):
             for i in identifierList:
                 i = i.strip()
                 strippedIdentifierList.append(i)
-            print getProteins(strippedIdentifierList)
+            print getProteins(strippedIdentifierList, parameters["Information"])
     else:
         noInput(parameters)
 
@@ -60,7 +60,7 @@ def getAllIdentifiers(begin, end):
     return json.dumps(identifiers)
 
 #returns info about a protein given an identifier
-def getProtein(identifier):
+def getProtein(identifier, info):
     entry = None
 
     #find the protein
@@ -74,14 +74,16 @@ def getProtein(identifier):
         raise Exception("Protein not found")
 
     #retrieve info about protein
-    name = entry["name"]
-    uniprotName = entry["uniprotName"]
-    length = entry["length"]
-    protein = {"Primary Identifier": identifier, "Name": name, "Uniprot Name": uniprotName, "Length": length}
+    #name = entry["name"]
+    #uniprotName = entry["uniprotName"]
+    #length = entry["length"]
+    #protein = {"Primary Identifier": identifier, "Name": name, "Uniprot Name": uniprotName, "Length": length}
+    infoValue = entry[info]
+    protein = {info: infoValue}
     return json.dumps(protein)
 
 #returns info about all proteins in a given list of identifiers
-def getProteins(identifierList):
+def getProteins(identifierList, info):
     proteinList = []
     for identifier in identifierList:
         entry = None
@@ -97,10 +99,12 @@ def getProteins(identifierList):
             raise Exception("One or more proteins were not found")
 
         #retrieve info about protein
-        name = entry["name"]
-        uniprotName = entry["uniprotName"]
-        length = entry["length"]
-        protein = {"Primary Identifier": identifier, "Name": name, "Uniprot Name": uniprotName, "Length": length}
+        #name = entry["name"]
+        #uniprotName = entry["uniprotName"]
+        #length = entry["length"]
+        #protein = {"Primary Identifier": identifier, "Name": name, "Uniprot Name": uniprotName, "Length": length}
+        infoValue = entry[info]
+        protein = {info: infoValue}
         proteinList.append(protein)
     return json.dumps(proteinList)
 
