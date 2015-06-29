@@ -5,6 +5,22 @@ from intermine.webservice import Service
 service = Service("https://apps.araport.org:443/thalemine/service")
 query = service.new_query("Protein")
 
+query.add_view(
+    "name", "primaryIdentifier", "length", "crossReferences.identifier",
+    "crossReferences.source.dataSets.bioEntities.locations.strand",
+    "crossReferences.source.dataSets.bioEntities.organism.name",
+    "genes.primaryIdentifier", "synonyms.value",
+    "crossReferences.source.dataSets.description"
+)
+
+query.outerjoin("crossReferences.source")
+query.outerjoin("crossReferences.source.dataSets")
+query.outerjoin("crossReferences.source.dataSets.bioEntities")
+query.outerjoin("crossReferences.source.dataSets.bioEntities.locations")
+query.outerjoin("crossReferences.source.dataSets.bioEntities.organism")
+query.outerjoin("genes")
+query.outerjoin("synonyms")
+
 def search(parameters):
     if "Identifiers" in parameters.keys():
 
@@ -61,25 +77,34 @@ def getAllIdentifiers(begin, end):
 
 #returns info about a protein given an identifier
 def getProtein(identifier, info):
-    entry = None
-
-    #find the protein
+    entries = []
+    foundOne = False
+    protein = []
+    #find all versions of the protein
     for row in query.rows():
-        if row["primaryIdentifier"] == identifier:
-            entry = row
+        if row["primaryIdentifier"] != identifier and foundOne == True:
             break
+        if row["primaryIdentifier"] == identifier:
+            entries.append(row)
+            foundOne = True
 
     #in case the protein is not found with the identifier
-    if entry == None:
+    if entries == []:
         raise Exception("Protein not found")
 
-    #retrieve info about protein
-    #name = entry["name"]
-    #uniprotName = entry["uniprotName"]
-    #length = entry["length"]
-    #protein = {"Primary Identifier": identifier, "Name": name, "Uniprot Name": uniprotName, "Length": length}
-    infoValue = entry[info]
-    protein = {info: infoValue}
+    #remove duplicate values
+    last = "placeholder"
+    noDupes = []
+    for entry in entries:
+        if entry[info] == last:
+            continue
+        noDupes.append(entry)
+        last = entry[info]
+
+    #get information
+    for entry in noDupes:
+        infoValue = entry[info]
+        protein.append({info: infoValue})
     return json.dumps(protein)
 
 
@@ -87,25 +112,34 @@ def getProtein(identifier, info):
 def getProteins(identifierList, info):
     proteinList = []
     for identifier in identifierList:
-        entry = None
-
-        #find the protein
+        entries = []
+        foundOne = False
+        protein = []
+        #find all versions of the protein
         for row in query.rows():
-            if row["primaryIdentifier"] == identifier:
-                entry = row
+            if row["primaryIdentifier"] != identifier and foundOne == True:
                 break
+            if row["primaryIdentifier"] == identifier:
+                entries.append(row)
+                foundOne = True
 
         #in case the protein is not found with the identifier
-        if entry == None:
+        if entries == []:
             raise Exception("One or more proteins were not found")
 
-        #retrieve info about protein
-        #name = entry["name"]
-        #uniprotName = entry["uniprotName"]
-        #length = entry["length"]
-        #protein = {"Primary Identifier": identifier, "Name": name, "Uniprot Name": uniprotName, "Length": length}
-        infoValue = entry[info]
-        protein = {info: infoValue}
+        #remove duplicate values
+        last = "placeholder"
+        noDupes = []
+        for entry in entries:
+            if entry[info] == last:
+                continue
+            noDupes.append(entry)
+            last = entry[info]
+
+        #get information
+        for entry in noDupes:
+            infoValue = entry[info]
+            protein.append({"primaryIdentifier": entry["primaryIdentifier"], info: infoValue})
         proteinList.append(protein)
     return json.dumps(proteinList)
 

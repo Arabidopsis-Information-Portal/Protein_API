@@ -5,8 +5,8 @@ name: protein_api
 version: 0.1
 type: query
 main_module: services.Protein_API.protein.py
-url: https://apps.araport.org/sandbox-thalemine/begin.do
-description: "An API that returns basic information about a protein given search parameters"
+url: https://apps.araport.org/thalemine/begin.do
+description: "An API that returns basic information about proteins given search parameters"
 endpoints:
   /search:
     description: "Finds and returns information about a protein given its identifier"
@@ -25,6 +25,7 @@ endpoints:
           - "secondaryIdentifier"
           - "name"
           - "uniprotName"
+          - "crossReferences.source.dataSets.description"
           - "length"
           - "ecNumber"
           - "id"
@@ -35,6 +36,11 @@ endpoints:
           - "primaryAccession"
           - "symbol"
           - "uniprotAccession"
+          - "crossReferences.identifier"
+          - "genes.primaryIdentifier"
+          - "synonyms.value"
+          - "crossReferences.source.dataSets.bioEntities.organism.name"
+          - "crossReferences.source.dataSets.bioEntities.locations.strand"
       - name: Begin
         description: "Display results starting from this number until the End"
         type: string
