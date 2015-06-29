@@ -1,6 +1,6 @@
-from intermine.webservice import Service
-service = Service("https://apps.araport.org:443/sandbox-thalemine/service")
-query = service.new_query("Protein")
+#from intermine.webservice import Service
+#service = Service("https://apps.araport.org:443/sandbox-thalemine/service")
+#query = service.new_query("Protein")
 #query.add_view(
 #    "name", "primaryIdentifier", "length", "crossReferences.identifier"#,
     #"crossReferences.source.dataSets.bioEntities.locations.strand",
@@ -19,7 +19,7 @@ query = service.new_query("Protein")
 #for row in query.rows():
 #    print str(row)+"\n"
 
-def getQuery():
-    return query
+#def getQuery():
+#    return query
 #for row in query.rows():
 #    print "Name: "+row["name"], "PrimIdentifier: "+row["primaryIdentifier"], "Length: "+str(row["length"]), "CrossIdentifier: "+row["crossReferences.identifier"], "\n"
