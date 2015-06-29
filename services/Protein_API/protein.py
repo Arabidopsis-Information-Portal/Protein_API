@@ -65,7 +65,6 @@ def getProtein(identifier, info):
 
     #find the protein
     for row in query.rows():
-        print row
         if row["primaryIdentifier"] == identifier:
             entry = row
             break

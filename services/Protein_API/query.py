@@ -24,11 +24,11 @@
 #for row in query.rows():
 #    print "Name: "+row["name"], "PrimIdentifier: "+row["primaryIdentifier"], "Length: "+str(row["length"]), "CrossIdentifier: "+row["crossReferences.identifier"], "\n"
 
-from intermine.webservice import Service
-service = Service("https://apps.araport.org:443/thalemine/service")
-query = service.new_query("Protein")
-query.add_view("primaryIdentifier", "crossReferences.identifier")
-query.outerjoin("crossReferences")
+#from intermine.webservice import Service
+#service = Service("https://apps.araport.org:443/thalemine/service")
+#query = service.new_query("Protein")
+#query.add_view("primaryIdentifier", "crossReferences.identifier")
+#query.outerjoin("crossReferences")
 
-for row in query.rows():
-    print row["primaryIdentifier"], row["crossReferences.identifier"]
+#for row in query.rows():
+#    print row["primaryIdentifier"], row["crossReferences.identifier"]
