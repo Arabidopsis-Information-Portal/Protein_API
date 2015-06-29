@@ -73,6 +73,7 @@ def getAllIdentifiers(begin, end):
         if i >= end:
             break
         identifiers.append(row["primaryIdentifier"])
+
     #remove duplicate values
     last = "placeholder"
     noDupes = []
@@ -82,7 +83,7 @@ def getAllIdentifiers(begin, end):
         noDupes.append(identifier)
         last = identifier
 
-    return json.dumps(identifiers)
+    return json.dumps(noDupes)
 
 #returns info about a protein given an identifier
 def getProtein(identifier, info):
