@@ -73,6 +73,15 @@ def getAllIdentifiers(begin, end):
         if i >= end:
             break
         identifiers.append(row["primaryIdentifier"])
+    #remove duplicate values
+    last = "placeholder"
+    noDupes = []
+    for identifier in identifiers:
+        if identifier == last:
+            continue
+        noDupes.append(identifier)
+        last = identifier
+
     return json.dumps(identifiers)
 
 #returns info about a protein given an identifier
