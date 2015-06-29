@@ -22,10 +22,19 @@ endpoints:
         default: primaryIdentifier
         enum:
           - "primaryIdentifier"
+          - "secondaryIdentifier"
           - "name"
           - "uniprotName"
           - "length"
-          - "crossReferences.identifier"
+          - "ecNumber"
+          - "id"
+          - "isFragment"
+          - "isUniprotCanonical"
+          - "md5checksum"
+          - "molecularWeight"
+          - "primaryAccession"
+          - "symbol"
+          - "uniprotAccession"
       - name: Begin
         description: "Display results starting from this number until the End"
         type: string
