@@ -5,24 +5,33 @@ from intermine.webservice import Service
 service = Service("https://apps.araport.org:443/thalemine/service")
 query = service.new_query("Protein")
 
-def search(parameters):
-    if "Identifiers" in parameters.keys():
+outputs = [
+    "primaryIdentifier",
+    "secondaryIdentifier",
+    "name",
+    "uniprotName",
+    "length",
+    "ecNumber",
+    "id",
+    "isFragment",
+    "isUniprotCanonical",
+    "md5checksum",
+    "molecularWeight",
+    "primaryAccession",
+    "symbol",
+    "uniprotAccession"
+]
 
-        identifierInput = parameters["Identifiers"]
+def search(parameters):
+    if "Identifier" in parameters.keys():
+
+        identifierInput = parameters["Identifier"]
 
         if identifierInput == "":
             noInput(parameters)
         #print info of a single protein when input is a single identifier
-        elif identifierInput.find(",") == -1:
-            print getProtein(identifierInput, parameters["Information"])
-        #print info of all specified proteins when input has multiple identifiers
         else:
-            identifierList = identifierInput.split(",")
-            strippedIdentifierList = []
-            for i in identifierList:
-                i = i.strip()
-                strippedIdentifierList.append(i)
-            print getProteins(strippedIdentifierList, parameters["Information"])
+            print getProtein(identifierInput, parameters["Output"])
     else:
         noInput(parameters)
 
@@ -87,41 +96,7 @@ def getProtein(identifier, info):
         raise Exception("Protein not found")
 
     #remove duplicate values
-    last = "placeholder"
-    noDupes = []
-    for entry in entries:
-        if entry[info] == last:
-            continue
-        noDupes.append(entry)
-        last = entry[info]
-
-    #get information
-    for entry in noDupes:
-        infoValue = entry[info]
-        protein.append({info: infoValue})
-    return json.dumps(protein)
-
-
-#returns info about all proteins in a given list of identifiers
-def getProteins(identifierList, info):
-    proteinList = []
-    for identifier in identifierList:
-        entries = []
-        foundOne = False
-        protein = []
-        #find all versions of the protein
-        for row in query.rows():
-            if row["primaryIdentifier"] != identifier and foundOne == True:
-                break
-            if row["primaryIdentifier"] == identifier:
-                entries.append(row)
-                foundOne = True
-
-        #in case the protein is not found with the identifier
-        if entries == []:
-            raise Exception("One or more proteins were not found")
-
-        #remove duplicate values
+    if info != "all":
         last = "placeholder"
         noDupes = []
         for entry in entries:
@@ -129,13 +104,58 @@ def getProteins(identifierList, info):
                 continue
             noDupes.append(entry)
             last = entry[info]
+    else:
+        noDupes = entries
 
-        #get information
+    #get information
+    if info == "all":
+        for entry in noDupes:
+            i = 0
+            while i < len(outputs):
+                protein.append({outputs[i]: entry[outputs[i]]})
+                i+=1
+        return json.dumps(protein)
+    else:
         for entry in noDupes:
             infoValue = entry[info]
-            protein.append({"primaryIdentifier": entry["primaryIdentifier"], info: infoValue})
-        proteinList.append(protein)
-    return json.dumps(proteinList)
+            protein.append({info: infoValue})
+        return json.dumps(protein)
+
+
+#returns info about all proteins in a given list of identifiers
+#def getProteins(identifierList, info):
+#    proteinList = []
+#    for identifier in identifierList:
+#        entries = []
+#        foundOne = False
+#        protein = []
+#        #find all versions of the protein
+#        for row in query.rows():
+#            if row["primaryIdentifier"] != identifier and foundOne == True:
+#                break
+#            if row["primaryIdentifier"] == identifier:
+#                entries.append(row)
+#                foundOne = True
+#
+#        #in case the protein is not found with the identifier
+#        if entries == []:
+#            raise Exception("One or more proteins were not found")
+#
+#        #remove duplicate values
+#        last = "placeholder"
+#        noDupes = []
+#        for entry in entries:
+#            if entry[info] == last:
+#                continue
+#            noDupes.append(entry)
+#            last = entry[info]
+#
+#        #get information
+#        for entry in noDupes:
+#            infoValue = entry[info]
+#            protein.append({"primaryIdentifier": entry["primaryIdentifier"], info: infoValue})
+#        proteinList.append(protein)
+#    return json.dumps(proteinList)
 
 
 
