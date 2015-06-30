@@ -31,7 +31,8 @@ def search(parameters):
             noInput(parameters)
         #print info of a single protein when input is a single identifier
         else:
-            print getProtein(identifierInput, parameters["Output"])
+            s = 10
+            #print getProtein(identifierInput, parameters["Output"])
     else:
         noInput(parameters)
 
@@ -113,13 +114,14 @@ def getProtein(identifier, info):
             i = 0
             version = ""
             while i < len(outputs):
-                version += ", " + outputs[i] + ":" + str(entry[outputs[i]])
+                #version += ", " + "\"outputs[i]\"" + ":" + str(entry[outputs[i]])
+                print "\"outputs[i]\"" + ":" + str(entry[outputs[i]])
                 i+=1
-            version += "}"
-            version = version[1:]
-            version = "{" + version
-            protein.append(version)
-        return json.dumps(protein)
+#            version += "}"
+#            version = version[2:]
+#            version = "{" + version
+#            protein.append(version)
+#        return json.dumps(protein)
     else:
         for entry in noDupes:
             infoValue = entry[info]
