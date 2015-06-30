@@ -16,7 +16,7 @@ query.add_view(
     "sequence.length", "sequence.md5checksum", "sequence.residues",
     "synonyms.value", "dataSets.description", "dataSets.name", "dataSets.url",
     "dataSets.version", "features.begin", "features.description",
-    "features.end", "features.type
+    "features.end", "features.type"
 )
 
 query.outerjoin("crossReferences")
