@@ -15,8 +15,7 @@ query.add_view(
     "organism.shortName", "organism.species", "organism.taxonId",
     "sequence.length", "sequence.md5checksum", "sequence.residues",
     "synonyms.value", "dataSets.description", "dataSets.name", "dataSets.url",
-    "dataSets.version", "features.begin", "features.description",
-    "features.end", "features.type"
+    "dataSets.version"
 )
 
 query.outerjoin("crossReferences")
@@ -25,7 +24,6 @@ query.outerjoin("dataSets")
 query.outerjoin("organism")
 query.outerjoin("sequence")
 query.outerjoin("synonyms")
-query.outerjoin("features")
 
 def search(parameters):
     if "Identifiers" in parameters.keys():
