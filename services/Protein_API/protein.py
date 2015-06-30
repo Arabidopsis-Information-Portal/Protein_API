@@ -31,47 +31,7 @@ def search(parameters):
             noInput(parameters)
         #print info of a single protein when input is a single identifier
         else:
-            s = 10
-            #testing
-            identifier = identifierInput
-            info = parameters["Output"]
-            entries = []
-            foundOne = False
-            protein = []
-            #find all versions of the protein
-            for row in query.rows():
-                if row["primaryIdentifier"] != identifier and foundOne == True:
-                    break
-                if row["primaryIdentifier"] == identifier:
-                    entries.append(row)
-                    foundOne = True
-
-            #in case the protein is not found with the identifier
-            if entries == []:
-                raise Exception("Protein not found")
-
-            #remove duplicate values
-            if info != "all":
-                last = "placeholder"
-                noDupes = []
-                for entry in entries:
-                    if entry[info] == last:
-                        continue
-                    noDupes.append(entry)
-                    last = entry[info]
-            else:
-                noDupes = entries
-
-            #get information
-            if info == "all":
-                for entry in noDupes:
-                    i = 0
-                    version = ""
-                    while i < len(outputs):
-                        #version += ", " + "\"outputs[i]\"" + ":" + str(entry[outputs[i]])
-                        print "\"outputs[i]\"" + ":" + str(entry[outputs[i]])
-                        i+=1
-            #print getProtein(identifierInput, parameters["Output"])
+            print getProtein(identifierInput, parameters["Output"])
     else:
         noInput(parameters)
 
@@ -153,14 +113,13 @@ def getProtein(identifier, info):
             i = 0
             version = ""
             while i < len(outputs):
-                #version += ", " + "\"outputs[i]\"" + ":" + str(entry[outputs[i]])
-                print "\"outputs[i]\"" + ":" + str(entry[outputs[i]])
+                version += ", " + "\"outputs[i]\" + ": " + str(entry[outputs[i]])
                 i+=1
-#            version += "}"
-#            version = version[2:]
-#            version = "{" + version
-#            protein.append(version)
-#        return json.dumps(protein)
+            version += "}"
+            version = version[2:]
+            version = "{" + version
+            protein.append(json.dumps(version))
+        return json.dumps(protein)
     else:
         for entry in noDupes:
             infoValue = entry[info]
