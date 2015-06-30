@@ -111,9 +111,14 @@ def getProtein(identifier, info):
     if info == "all":
         for entry in noDupes:
             i = 0
+            version = ""
             while i < len(outputs):
-                protein.append({outputs[i]: entry[outputs[i]]})
+                version += "," + outputs[i] + ":" + str(entry[outputs[i]])
                 i+=1
+            version += "}"
+            version = version[1:]
+            version = "{" + version
+            protein.append(version)
         return json.dumps(protein)
     else:
         for entry in noDupes:
