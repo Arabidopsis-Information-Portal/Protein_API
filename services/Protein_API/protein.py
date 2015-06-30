@@ -5,15 +5,6 @@ from intermine.webservice import Service
 service = Service("https://apps.araport.org:443/thalemine/service")
 query = service.new_query("Protein")
 
-query.add_view(
-    "primaryIdentifier", "isFragment", "length",
-    "md5checksum", "molecularWeight", "name", "primaryAccession",
-    "uniprotAccession", "uniprotName",
-    "isUniprotCanonical", "features.begin", "features.description",
-    "features.end", "features.type")
-
-query.outerjoin("features")
-
 def search(parameters):
     if "Identifiers" in parameters.keys():
 
