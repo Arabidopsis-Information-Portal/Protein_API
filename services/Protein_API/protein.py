@@ -33,6 +33,8 @@ def search(parameters):
         else:
             s = 10
             #testing
+            identifier = identifierInput
+            info = parameters["Output"]
             entries = []
             foundOne = False
             protein = []
