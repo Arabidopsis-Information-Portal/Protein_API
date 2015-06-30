@@ -19,13 +19,13 @@ query.add_view(
     "features.end", "features.type"
 )
 
-query.outerjoin("crossReferences")
 query.outerjoin("crossReferences.source")
-query.outerjoin("dataSets")
-query.outerjoin("organism")
-query.outerjoin("sequence")
+query.outerjoin("crossReferences.source.dataSets")
+query.outerjoin("crossReferences.source.dataSets.bioEntities")
+query.outerjoin("crossReferences.source.dataSets.bioEntities.locations")
+query.outerjoin("crossReferences.source.dataSets.bioEntities.organism")
+query.outerjoin("genes")
 query.outerjoin("synonyms")
-query.outerjoin("features")
 
 def search(parameters):
     if "Identifiers" in parameters.keys():
