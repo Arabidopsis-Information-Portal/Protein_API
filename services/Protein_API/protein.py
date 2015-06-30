@@ -113,7 +113,7 @@ def getProtein(identifier, info):
             i = 0
             version = ""
             while i < len(outputs):
-                version += "," + outputs[i] + ":" + str(entry[outputs[i]])
+                version += ", " + outputs[i] + ":" + str(entry[outputs[i]])
                 i+=1
             version += "}"
             version = version[1:]
