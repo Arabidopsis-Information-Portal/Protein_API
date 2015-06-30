@@ -6,11 +6,17 @@ service = Service("https://apps.araport.org:443/thalemine/service")
 query = service.new_query("Protein")
 
 query.add_view(
-    "name", "primaryIdentifier", "length", "crossReferences.identifier",
-    "crossReferences.source.dataSets.bioEntities.locations.strand",
-    "crossReferences.source.dataSets.bioEntities.organism.name",
-    "genes.primaryIdentifier", "synonyms.value",
-    "crossReferences.source.dataSets.description"
+    "primaryIdentifier", "crossReferences.identifier", "isFragment", "length",
+    "md5checksum", "molecularWeight", "name", "primaryAccession",
+    "uniprotAccession", "uniprotName", "comments.description", "comments.type",
+    "isUniprotCanonical", "crossReferences.source.description",
+    "crossReferences.source.name", "crossReferences.source.url",
+    "organism.commonName", "organism.genus", "organism.name",
+    "organism.shortName", "organism.species", "organism.taxonId",
+    "sequence.length", "sequence.md5checksum", "sequence.residues",
+    "synonyms.value", "dataSets.description", "dataSets.name", "dataSets.url",
+    "dataSets.version", "features.begin", "features.description",
+    "features.end", "features.type
 )
 
 query.outerjoin("crossReferences")
