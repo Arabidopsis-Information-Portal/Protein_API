@@ -24,6 +24,7 @@ endpoints:
           - "all"
           - "primaryIdentifier"
           - "secondaryIdentifier"
+          - "mRNA.primaryIdentifier"
           - "name"
           - "uniprotName"
           - "length"

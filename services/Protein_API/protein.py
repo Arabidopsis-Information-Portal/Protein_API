@@ -5,9 +5,12 @@ from intermine.webservice import Service
 service = Service("https://apps.araport.org:443/thalemine/service")
 query = service.new_query("Protein")
 
+query.add_view("mRNA.primaryIdentifier")
+
 outputs = [
     "primaryIdentifier",
     "secondaryIdentifier",
+    "mRNA.primaryIdentifier",
     "name",
     "uniprotName",
     "length",
@@ -65,7 +68,7 @@ def getAllIdentifiers(begin, end):
             continue
         if i >= end:
             break
-        identifiers.append(row["primaryIdentifier"])
+        identifiers.append(row["mRNA.primaryIdentifier"])
 
     #remove duplicate values
     last = "placeholder"
@@ -85,9 +88,9 @@ def getProtein(identifier, info):
     protein = []
     #find all versions of the protein
     for row in query.rows():
-        if row["primaryIdentifier"] != identifier and foundOne == True:
+        if row["mRNA.primaryIdentifier"] != identifier and foundOne == True:
             break
-        if row["primaryIdentifier"] == identifier:
+        if row["mRNA.primaryIdentifier"] == identifier:
             entries.append(row)
             foundOne = True
 
