@@ -124,6 +124,8 @@ def getProtein(identifier, info):
         for entry in noDupes:
             infoValue = entry[info]
             protein.append({info: infoValue})
+            if len(protein) == 1:
+                protein = protein[0]
         return json.dumps(protein)
 
 
