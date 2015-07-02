@@ -116,8 +116,6 @@ def getProtein(identifier, info):
                 version[outputs[i]] = entry[outputs[i]]
                 i+=1
             protein.append(version)
-            print protein
-            print json.dumps(protein)
         return json.dumps(protein)
     else:
         for entry in noDupes:
