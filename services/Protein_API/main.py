@@ -2,11 +2,12 @@ import query
 import json
 from intermine.webservice import Service
 
+#query thalemine, the database used to obtain the output information
 service = Service("https://apps.araport.org:443/thalemine/service")
 query = service.new_query("Protein")
-
 query.add_view("mRNA.primaryIdentifier")
 
+#lists all possible outputs also listed in the metadata
 outputs = [
     "primaryIdentifier",
     "secondaryIdentifier",
@@ -25,20 +26,22 @@ outputs = [
     "uniprotAccession"
 ]
 
+#main search function
 def search(parameters):
     if "Identifier" in parameters.keys():
 
         identifierInput = parameters["Identifier"]
-
+        #print all identifiers when input is blank
         if identifierInput == "":
-            noInput(parameters)
+            print getAllIdentifiers(0, -1)
         #print info of a single protein when input is a single identifier
         else:
             print getProtein(identifierInput, parameters["Output"])
+    #print all identifiers when no identifier is provided
     else:
-        noInput(parameters)
+        print getAllIdentifiers(0, -1)
 
-#print all names when input is empty
+#print all names when input is empty (function is deprecated with the removal of the begin and end parameters)
 def noInput(parameters):
     begin = 0
     end = -1
@@ -68,7 +71,7 @@ def getAllIdentifiers(begin, end):
             continue
         if i >= end:
             break
-        identifiers.append(row["mRNA.primaryIdentifier"])
+        identifiers.append(row["mRNA.primaryIdentifier"]) #the identifier parameter uses the mRNA primary identifier format
 
     #remove duplicate values
     last = "placeholder"
@@ -168,6 +171,6 @@ def getProtein(identifier, info):
 
 
 
-
+#list function (in development)
 def list(parameters):
     noInput(parameters)
