@@ -180,7 +180,7 @@ def removeDuplicates(list, propertyName):
         #add the entry to the no duplicate list
         noDupes.append(entry)
         #update last for the next iteration
-        last = entry[info]
+        last = entry[propertyName]
     return noDupes
 
 
