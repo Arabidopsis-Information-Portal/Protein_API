@@ -69,15 +69,15 @@ endpoints:
 #        required: false
   /list:
     description: "Lists identifiers of proteins"
-    parameters:
-      - name: Begin
-        description: "Display results starting from this number until the End"
-        type: string
-        required: false
-      - name: End
-        description: "Display results starting from Begin until this number"
-        type: string
-        required: false
+#    parameters:
+#      - name: Begin
+#        description: "Display results starting from this number until the End"
+#        type: string
+#        required: false
+#      - name: End
+#        description: "Display results starting from Begin until this number"
+#        type: string
+#        required: false
 requirements:
   - intermine
 authors:
