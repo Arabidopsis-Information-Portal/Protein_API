@@ -158,11 +158,14 @@ def getProtein(identifier, info):
             #for each entry, retrieve the wanted information
             infoValue = entry[info]
             #add the information as a key-value pair to the protein list
-            protein.append({info: infoValue})
+            i = {info: infoValue}
+            print type(i)
+            print type(protein)
+            protein.append(i)
             #if there is only one protein, only return the protein as a single key-value pair
             #this removes a pair of unnecessary brackets in the final JSON
-            if len(protein) == 1:
-                protein = protein[0]
+        if len(protein) == 1:
+            protein = protein[0]
         return json.dumps(protein)
 
 #removes the entries with duplicates of the given property from the given list
