@@ -159,8 +159,6 @@ def getProtein(identifier, info):
             infoValue = entry[info]
             #add the information as a key-value pair to the protein list
             i = {info: infoValue}
-            print type(i)
-            print type(protein)
             protein.append(i)
             #if there is only one protein, only return the protein as a single key-value pair
             #this removes a pair of unnecessary brackets in the final JSON
