@@ -112,21 +112,18 @@ def getProtein(identifier, info):
     foundOne = False
     protein = []
     #find all versions of the protein in the query
-    query.add_constraint("mRNA.primaryIdentifier", "=", identifier, code = "A")
     for row in query.rows():
-        entries.append(row)
-#    for row in query.rows():
-#        #if I am currently on a row that does not match but i have already found a protein,
-#        #stop looking because I have already found them all
-#        #This works because all the versions are grouped together in order so if
-#        #I am currently on a row and I have already found some versions,
-#        #I have already iterated past all of them
-#        if row["mRNA.primaryIdentifier"] != identifier and foundOne == True:
-#            break
-#        #add rows matching the identifier
-#        if row["mRNA.primaryIdentifier"] == identifier:
-#            entries.append(row)
-#            foundOne = True
+        #if I am currently on a row that does not match but i have already found a protein,
+        #stop looking because I have already found them all
+        #This works because all the versions are grouped together in order so if
+        #I am currently on a row and I have already found some versions,
+        #I have already iterated past all of them
+        if row["mRNA.primaryIdentifier"] != identifier and foundOne == True:
+            break
+        #add rows matching the identifier
+        if row["mRNA.primaryIdentifier"] == identifier:
+            entries.append(row)
+            foundOne = True
 
     #in case the protein is not found with the identifier
     if entries == []:
