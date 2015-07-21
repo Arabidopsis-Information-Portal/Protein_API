@@ -16,7 +16,7 @@ endpoints:
     description: "Finds and returns information about a protein given its identifier"
     parameters:
       - name: Identifier
-        description: "Search for a protein based on an identifier.
+        description: "Search for a protein based on an identifier."
         type: string
         required: true
       - name: Output
