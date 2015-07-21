@@ -4,6 +4,7 @@
 name: protein_api
 version: 0.1
 type: query
+icon: araport_circle.png
 main_module: services.Protein_API.main.py #location of main module
 url: https://apps.araport.org/thalemine/begin.do
 description: "An API that returns basic information about proteins given search parameters"
@@ -17,7 +18,7 @@ endpoints:
       - name: Identifier
         description: "Search for a protein based on an identifier. Having no identifiers lists all protein identifiers."
         type: string
-        required: false
+        required: true
       - name: Output
         description: "Information to display"
         type: string
