@@ -87,21 +87,14 @@ requirements:
 sources:
   - title: ThaleMine
     description: "A database containing Arabidopsis Thaliana data. It can be searched or queried for these lists."
-    sponsor_organization_name:
-      - National Science Foundation
-      - Biotechnology and Biological Sciences Research Council
-    sponsor_uri:
-      - http://www.nsf.gov/
-      - http://www.bbsrc.ac.uk/
+    sponsor_organization_name: National Science Foundation
+    sponsor_uri: http://www.nsf.gov/
     provider_name: Araport
     uri: https://apps.araport.org/thalemine/begin.do
     sources:
       - title: UniProt
         description: "A searchable database containing data about proteins."
-        provider_name:
-          - European Bioinformatics Institute
-          - Swiss Institute of Bioinformatics
-          - Protein Information Resource
+        provider_name: European Bioinformatics Institute, Swiss Institute of Bioinformatics, Protein Information Resource
         sponsor_organization_name: National Institutes of Health
         sponsor_uri: http://www.nih.gov/
         uri: http://www.uniprot.org/
