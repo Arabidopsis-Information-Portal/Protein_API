@@ -9,8 +9,7 @@ query = service.new_query("Protein")
 #adds these fields to the query
 query.add_view(
     "primaryIdentifier", "secondaryIdentifier", "mRNA.primaryIdentifier",
-    "name", "uniprotName", "length", "ecNumber", "id", "isFragment", "isUniprotCanonical",
-    "md5checksum", "molecularWeight", "primaryAccession", "symbol", "uniprotAccession"
+    "name", "uniprotName", "length", "ecNumber", "id", "isFragment", "isUniprotCanonical", "molecularWeight", "primaryAccession", "symbol", "uniprotAccession"
 )
 
 #a list of all possible outputs also listed in the metadata
@@ -25,7 +24,6 @@ outputs = [
     "id",
     "isFragment",
     "isUniprotCanonical",
-    "md5checksum",
     "molecularWeight",
     "primaryAccession",
     "symbol",

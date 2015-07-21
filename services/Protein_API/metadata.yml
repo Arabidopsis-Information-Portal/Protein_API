@@ -13,7 +13,7 @@ tags:
   - Thalemine
 endpoints:
   /search:
-    description: "Finds and returns information about a protein given its identifier"
+    description: "Finds and returns information about a protein given its mRNA identifier. The output is a JSON containing information about a given protein. If all is selected as the output parameter, information about every output is returned. If a specific output is selected, only the information for the specific output is returned. If the output has more than one value, a list of all values will be returned."
     parameters:
       - name: Identifier
         description: "Search for a protein based on an identifier."
@@ -36,7 +36,6 @@ endpoints:
           - "id"
           - "isFragment"
           - "isUniprotCanonical"
-          - "md5checksum"
           - "molecularWeight"
           - "primaryAccession"
           - "symbol"
@@ -72,7 +71,7 @@ endpoints:
 #        type: string
 #        required: false
   /list:
-    description: "Lists identifiers of proteins"
+    description: "Returns a JSON listing the mRNA identifiers for all available proteins. These identifiers can then be used in the search endpoint to retrieve more information about the protein."
 #    parameters:
 #      - name: Begin
 #        description: "Display results starting from this number until the End"
