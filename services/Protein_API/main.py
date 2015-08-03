@@ -93,7 +93,7 @@ def getAllIdentifiers():
         #append the identifier in each row to the list of identifiers
         #identifiers.append(row["mRNA.primaryIdentifier"])
         print row["mRNA.primaryIdentifier"]
-        print "---""
+        print "---"
     #json.dumps(parameter) is a function that converts the parameter into JSON format
     #return json.dumps(identifiers)
 
