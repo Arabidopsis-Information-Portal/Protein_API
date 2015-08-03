@@ -40,47 +40,8 @@ endpoints:
           - "primaryAccession"
           - "symbol"
           - "uniprotAccession"
-
-#          - "primaryIdentifier"
-#          - "secondaryIdentifier"
-#          - "name"
-#          - "uniprotName"
-#          - "crossReferences.source.dataSets.description"
-#          - "length"
-#          - "ecNumber"
-#          - "id"
-#          - "isFragment"
-#          - "isUniprotCanonical"
-#          - "md5checksum"
-#          - "molecularWeight"
-#          - "primaryAccession"
-#          - "symbol"
-#          - "uniprotAccession"
-#          - "crossReferences.identifier"
-#          - "genes.primaryIdentifier"
-#          - "synonyms.value"
-#          - "crossReferences.source.dataSets.bioEntities.organism.name"
-#          - "crossReferences.source.dataSets.bioEntities.locations.strand"
-
-#      - name: Begin
-#        description: "Display results starting from this number until the End"
-#        type: string
-#        required: false
-#      - name: End
-#        description: "Display results starting from Begin until this number"
-#        type: string
-#        required: false
   /list:
     description: "Returns a JSON listing the mRNA identifiers for all available proteins. These identifiers can then be used in the search endpoint to retrieve more information about the protein."
-#    parameters:
-#      - name: Begin
-#        description: "Display results starting from this number until the End"
-#        type: string
-#        required: false
-#      - name: End
-#        description: "Display results starting from Begin until this number"
-#        type: string
-#        required: false
 requirements:
   - intermine
 sources:
