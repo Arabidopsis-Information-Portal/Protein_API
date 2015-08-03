@@ -138,24 +138,14 @@ def getProtein(identifier, info):
                 version[outputs[i]] = entry[outputs[i]]
                 i+=1
             #add this version to the list of proteins
-            protein.append(version)
-        #if there is only one protein, only return the protein as a single key-value pair
-        #this removes a pair of unnecessary brackets in the final JSON
-        if len(protein) == 1:
-            protein = protein[0]
-        return json.dumps(protein)
+            print json.dumps(version)
     else:
         for entry in noDupes:
             #for each entry, retrieve the wanted information
             infoValue = entry[info]
             #add the information as a key-value pair to the protein list
             i = {info: infoValue}
-            protein.append(i)
-            #if there is only one protein, only return the protein as a single key-value pair
-            #this removes a pair of unnecessary brackets in the final JSON
-        if len(protein) == 1:
-            protein = protein[0]
-        return json.dumps(protein)
+            print json.dumps(i)
 
 #removes the entries with duplicates of the given property from the given list
 def removeDuplicates(list, propertyName):
