@@ -14,11 +14,12 @@ tags:
   - Thalemine
 endpoints:
   /search:
-    description: "Finds and returns information about a protein given its mRNA identifier. The output is a JSON containing information about a given protein. If all is selected as the output parameter, information about every output is returned. If a specific output is selected, only the information for the specific output is returned. If the output has more than one value, a list of all values will be returned."
+    description: "Returns information about a single protein given its mRNA identifier. The format of the output depends on the output parameter. It can show all available information about the protein or only a single one. Warning: some proteins have isoforms (e.g. AT1G01070.1). In this case, each isoform is represented as an object in the result array."
     parameters:
       - name: Identifier
         description: "Search for a protein based on an identifier."
         type: string
+        default: AT4G09000.1
         required: true
       - name: Output
         description: "Information to display"
