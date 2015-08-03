@@ -89,10 +89,13 @@ def getAllIdentifiers():
     entries = removeDuplicates(entries, "mRNA.primaryIdentifier")
     #initialize the array to append in the loop
     identifiers = []
+    protein = {}
     for row in entries:
         #append the identifier in each row to the list of identifiers
         #identifiers.append(row["mRNA.primaryIdentifier"])
-        print json.dumps(row["mRNA.primaryIdentifier"])
+        protein["mRNA.primaryIdentifier"] = row["mRNA.primaryIdentifier"]
+        protein["name"] = row["name"]
+        print json.dumps(protein)
         print "---"
     #json.dumps(parameter) is a function that converts the parameter into JSON format
     #return json.dumps(identifiers)
