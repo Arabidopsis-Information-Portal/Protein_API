@@ -34,7 +34,7 @@ outputs = [
 def search(parameters):
     if "Identifier" in parameters.keys():
         identifierInput = parameters["Identifier"]
-        print getProtein(identifierInput, parameters["Output"])
+        getProtein(identifierInput, parameters["Output"])
 
 #print all names when input is empty
 #(deprecated with the removal of the begin and end parameters)
