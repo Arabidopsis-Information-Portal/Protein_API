@@ -139,6 +139,7 @@ def getProtein(identifier, info):
                 i+=1
             #add this version to the list of proteins
             print json.dumps(version)
+            print "---"
     else:
         for entry in noDupes:
             #for each entry, retrieve the wanted information
@@ -146,6 +147,7 @@ def getProtein(identifier, info):
             #add the information as a key-value pair to the protein list
             i = {info: infoValue}
             print json.dumps(i)
+            print "---"
 
 #removes the entries with duplicates of the given property from the given list
 def removeDuplicates(list, propertyName):
