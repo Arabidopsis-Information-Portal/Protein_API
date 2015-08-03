@@ -91,9 +91,11 @@ def getAllIdentifiers():
     identifiers = []
     for row in entries:
         #append the identifier in each row to the list of identifiers
-        identifiers.append(row["mRNA.primaryIdentifier"])
+        #identifiers.append(row["mRNA.primaryIdentifier"])
+        print row["mRNA.primaryIdentifier"]
+        print "---""
     #json.dumps(parameter) is a function that converts the parameter into JSON format
-    return json.dumps(identifiers)
+    #return json.dumps(identifiers)
 
 #returns info about a protein given an identifier
 def getProtein(identifier, info):
@@ -214,4 +216,4 @@ def getProteins(identifierList, info):
 
 #list function (in development)
 def list(parameters):
-    print getAllIdentifiers()
+    getAllIdentifiers()
