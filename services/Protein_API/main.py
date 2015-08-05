@@ -2,7 +2,6 @@ import query
 import json
 from intermine.webservice import Service
 
-raise Exception("Initial")
 #query thalemine, the database used to obtain the output information
 service = Service("https://apps.araport.org:443/thalemine/service")
 
@@ -43,6 +42,7 @@ displayOutputs = [
 
 #main search function
 def search(parameters):
+    raise Exception("Initial")
     if "Identifier" in parameters.keys():
         identifierInput = parameters["Identifier"]
         getProtein(identifierInput, "all")
