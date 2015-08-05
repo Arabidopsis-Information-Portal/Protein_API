@@ -14,36 +14,36 @@ tags:
   - Thalemine
 endpoints:
   /search:
-    description: "Returns information about a single protein given its mRNA identifier. The format of the output depends on the output parameter. It can show all available information about the protein or only a single piece of information. Warning: some proteins have isoforms (e.g. AT1G01070.1). In this case, each isoform is represented as an object in the result array."
+    description: "Returns information about a single protein given its mRNA primary identifier. Warning: there is a known issue with the data where two proteins are incorrectly associated with the same mRNA primary identifier (e.g. AT2G46830.1)."
     parameters:
       - name: Identifier
         description: "Search for a protein based on an identifier."
         type: string
         default: AT4G09000.1
         required: true
-      - name: Output
-        description: "Information to display"
-        type: string
-        required: true
-        default: all
-        enum:
-          - "all"
-          - "primaryIdentifier"
-          - "secondaryIdentifier"
-          - "mRNA.primaryIdentifier"
-          - "name"
-          - "uniprotName"
-          - "length"
-          - "ecNumber"
-          - "id"
-          - "isFragment"
-          - "isUniprotCanonical"
-          - "molecularWeight"
-          - "primaryAccession"
-          - "symbol"
-          - "uniprotAccession"
+#      - name: Output
+#        description: "Information to display"
+#        type: string
+#        required: true
+#        default: all
+#        enum:
+#          - "all"
+#          - "primaryIdentifier"
+#          - "secondaryIdentifier"
+#          - "mRNA.primaryIdentifier"
+#          - "name"
+#          - "uniprotName"
+#          - "length"
+#          - "ecNumber"
+#          - "id"
+#          - "isFragment"
+#          - "isUniprotCanonical"
+#          - "molecularWeight"
+#          - "primaryAccession"
+#          - "symbol"
+#          - "uniprotAccession"
   /list:
-    description: "Returns an array of objects representing proteins and each object contains the mRNA identifier and the name of the protein. These identifiers can then be used in the search endpoint to retrieve more information about the protein. Warning: there are a lot of proteins so this can be very slow (more than 20 minutes)"
+    description: "Returns an array of objects representing proteins and each object contains the mRNA identifier and the name of the protein. These identifiers can then be used in the search endpoint to retrieve more information about the protein. Warning: there are a lot of proteins so this can be very slow (15 seconds to obtain data, more than 20 minutes to display)"
 requirements:
   - intermine
 sources:
