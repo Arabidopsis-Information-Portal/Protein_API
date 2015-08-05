@@ -14,7 +14,7 @@ tags:
   - Thalemine
 endpoints:
   /search:
-    description: "Returns information about a single protein given its mRNA primary identifier. Warning: there is a known issue with the data where two proteins are incorrectly associated with the same mRNA primary identifier."
+    description: "Returns information about a single protein given its mRNA primary identifier. Warning: there is a known issue with the data where two proteins are incorrectly associated with the same mRNA primary identifier (e.g. AT2G46830.1)."
     parameters:
       - name: Identifier
         description: "Search for a protein based on an identifier."

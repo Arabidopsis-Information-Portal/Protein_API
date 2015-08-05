@@ -6,11 +6,6 @@ from intermine.webservice import Service
 service = Service("https://apps.araport.org:443/thalemine/service")
 #query out of the proteins
 query = service.new_query("Protein")
-#adds these fields to the query
-query.add_view(
-    "primaryIdentifier", "secondaryIdentifier", "mRNA.primaryIdentifier",
-    "name", "uniprotName", "length", "ecNumber", "id", "isFragment", "isUniprotCanonical", "molecularWeight", "primaryAccession", "symbol", "uniprotAccession"
-)
 
 #a list of all possible outputs also listed in the metadata
 outputs = [
@@ -28,6 +23,23 @@ outputs = [
     "primaryAccession",
     "symbol",
     "uniprotAccession"
+]
+
+displayOutputs = [
+    "Primary_Identifier",
+    "Secondary_Identifier",
+    "mRNA_Primary_Identifier",
+    "Name",
+    "Uniprot_Name",
+    "Length",
+    "EC_Number",
+    "ID",
+    "Is_Fragment",
+    "Is_Uniprot_Canonical",
+    "Molecular_Weight",
+    "Primary_Accession",
+    "Symbol",
+    "Uniprot_Accession"
 ]
 
 #main search function
@@ -83,6 +95,8 @@ def getAllIdentifiersFromBeginToEnd(begin, end):
 
 #returns a JSON representing a list of all protein identifiers
 def getAllIdentifiers():
+    #adds these fields to the query
+    query.add_view("mRNA.primaryIdentifier","name")
     #put the list of the data from the query into entries
     entries = query.rows()
     #remove duplicate identifiers from the query
@@ -91,8 +105,8 @@ def getAllIdentifiers():
     protein = {}
     for row in entries:
         #append the identifier in each row to the list of identifiers
-        protein["mRNA.primaryIdentifier"] = row["mRNA.primaryIdentifier"]
-        protein["name"] = row["name"]
+        protein["mRNA_Primary_Identifier"] = row["mRNA.primaryIdentifier"]
+        protein["Name"] = row["name"]
         print json.dumps(protein)
         print "---"
     #json.dumps(parameter) is a function that converts the parameter into JSON format
@@ -100,32 +114,40 @@ def getAllIdentifiers():
 
 #returns info about a protein given an identifier
 def getProtein(identifier, info):
+    #adds these fields to the query
+    query.add_view(
+        "primaryIdentifier", "secondaryIdentifier", "mRNA.primaryIdentifier",
+        "name", "uniprotName", "length", "ecNumber", "id", "isFragment", "isUniprotCanonical", "molecularWeight", "primaryAccession", "symbol", "uniprotAccession"
+    )
+    query.add_constraint("mRNA.primaryIdentifier", "=", identifier, code = "A")
     entries = []
-    foundOne = False
+#    foundOne = False
     protein = []
-    #find all versions of the protein in the query
     for row in query.rows():
+        entries.append(row)
+    #find all versions of the protein in the query
+#    for row in query.rows():
         #if I am currently on a row that does not match but i have already found a protein,
         #stop looking because I have already found them all
         #This works because all the versions are grouped together in order so if
         #I am currently on a row and I have already found some versions,
         #I have already iterated past all of them
-        if row["mRNA.primaryIdentifier"] != identifier and foundOne == True:
-            break
+#        if row["mRNA.primaryIdentifier"] != identifier and foundOne == True:
+#            break
         #add rows matching the identifier
-        if row["mRNA.primaryIdentifier"] == identifier:
-            entries.append(row)
-            foundOne = True
+#        if row["mRNA.primaryIdentifier"] == identifier:
+#            entries.append(row)
+#            foundOne = True
 
     #in case the protein is not found with the identifier
-    if entries == []:
-        raise Exception("Protein not found")
+#    if entries == []:
+#        raise Exception("Protein not found")
 
     #remove duplicates of the wanted information unless all information is wanted
     if info == "all":
         noDupes = entries
-    else:
-        noDupes = removeDuplicates(entries, info)
+#    else:
+#        noDupes = removeDuplicates(entries, info)
 
     #do different things for getting all information and getting a single output
     if info == "all":
@@ -136,7 +158,7 @@ def getProtein(identifier, info):
             while i < len(outputs):
                 #using each of the outputs as a key, set the value in the version dictionary
                 #to be the value depending on entry
-                version[outputs[i]] = entry[outputs[i]]
+                version[displayOutputs[i]] = entry[outputs[i]]
                 i+=1
             #add this version to the list of proteins
             print json.dumps(version)
