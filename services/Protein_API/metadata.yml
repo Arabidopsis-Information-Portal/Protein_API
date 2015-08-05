@@ -46,6 +46,8 @@ endpoints:
     description: "Returns an array of objects representing proteins and each object contains the mRNA identifier and the name of the protein. These identifiers can then be used in the search endpoint to retrieve more information about the protein. Warning: there are a lot of proteins so this can be very slow (15 seconds to obtain data, more than 20 minutes to display)"
 requirements:
   - intermine
+whitelist:
+  - apps.araport.org
 sources:
   - title: ThaleMine
     description: "A database containing Arabidopsis Thaliana data. It can be searched or queried for these lists."
