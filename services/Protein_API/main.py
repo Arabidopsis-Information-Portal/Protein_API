@@ -42,7 +42,6 @@ displayOutputs = [
 
 #main search function
 def search(parameters):
-    raise Exception("Initial")
     if "Identifier" in parameters.keys():
         identifierInput = parameters["Identifier"]
         getProtein(identifierInput, "all")
