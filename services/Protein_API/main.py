@@ -4,8 +4,6 @@ from intermine.webservice import Service
 
 #query thalemine, the database used to obtain the output information
 service = Service("https://apps.araport.org:443/thalemine/service")
-#query out of the proteins
-query = service.new_query("Protein")
 
 #a list of all possible outputs also listed in the metadata
 outputs = [
@@ -95,6 +93,8 @@ def getAllIdentifiersFromBeginToEnd(begin, end):
 
 #returns a JSON representing a list of all protein identifiers
 def getAllIdentifiers():
+    #query out of the proteins
+    query = service.new_query("Protein")
     #adds these fields to the query
     query.add_view("mRNA.primaryIdentifier","name")
     #put the list of the data from the query into entries
@@ -114,6 +114,8 @@ def getAllIdentifiers():
 
 #returns info about a protein given an identifier
 def getProtein(identifier, info):
+    #query out of the proteins
+    query = service.new_query("Protein")
     #adds these fields to the query
     query.add_view(
         "primaryIdentifier", "secondaryIdentifier", "mRNA.primaryIdentifier",
