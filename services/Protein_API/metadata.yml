@@ -2,7 +2,7 @@
 
 ---
 name: protein_api
-version: 0.1
+version: 1.0
 type: query
 icon: araport_circle.png
 main_module: services.Protein_API.main.py #location of main module
