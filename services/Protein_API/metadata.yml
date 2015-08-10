@@ -13,37 +13,40 @@ tags:
   - Thalemine
 endpoints:
   /search:
-    description: "Finds and returns information about a protein given its mRNA identifier. The output is a JSON containing information about a given protein. If all is selected as the output parameter, information about every output is returned. If a specific output is selected, only the information for the specific output is returned. If the output has more than one value, a list of all values will be returned."
+    description: "Returns information about a single protein given its mRNA primary identifier. Warning: there is a known issue with the data where two proteins are incorrectly associated with the same mRNA primary identifier (e.g. AT2G46830.1)."
     parameters:
       - name: Identifier
         description: "Search for a protein based on an identifier."
         type: string
+        default: AT4G09000.1
         required: true
-      - name: Output
-        description: "Information to display"
-        type: string
-        required: true
-        default: all
-        enum:
-          - "all"
-          - "primaryIdentifier"
-          - "secondaryIdentifier"
-          - "mRNA.primaryIdentifier"
-          - "name"
-          - "uniprotName"
-          - "length"
-          - "ecNumber"
-          - "id"
-          - "isFragment"
-          - "isUniprotCanonical"
-          - "molecularWeight"
-          - "primaryAccession"
-          - "symbol"
-          - "uniprotAccession"
+#      - name: Output
+#        description: "Information to display"
+#        type: string
+#        required: true
+#        default: all
+#        enum:
+#          - "all"
+#          - "primaryIdentifier"
+#          - "secondaryIdentifier"
+#          - "mRNA.primaryIdentifier"
+#          - "name"
+#          - "uniprotName"
+#          - "length"
+#          - "ecNumber"
+#          - "id"
+#          - "isFragment"
+#          - "isUniprotCanonical"
+#          - "molecularWeight"
+#          - "primaryAccession"
+#          - "symbol"
+#          - "uniprotAccession"
   /list:
-    description: "Returns a JSON listing the mRNA identifiers for all available proteins. These identifiers can then be used in the search endpoint to retrieve more information about the protein."
+    description: "Returns an array of objects representing proteins and each object contains the mRNA identifier and the name of the protein. These identifiers can then be used in the search endpoint to retrieve more information about the protein. Warning: there are a lot of proteins so this can be very slow (15 seconds to obtain data, more than 20 minutes to display)"
 requirements:
   - intermine
+whitelist:
+  - apps.araport.org
 sources:
   - title: ThaleMine
     description: "A database containing Arabidopsis Thaliana data. It can be searched or queried for these lists."
