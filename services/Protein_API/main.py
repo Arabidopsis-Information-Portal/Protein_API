@@ -111,6 +111,9 @@ def getProtein(identifier, info):
             i = 0
             #initialize the dictionary to be used in the loop
             version = {}
+            #there are multiple versions of a protein due to a temporary database bug (e.g AT2G46830.1)
+            #where separate entities incorrectly share a single identifier.
+            #The problem is inherited from UniProt and it is expected to go away in future versions
             while i < len(outputs):
                 #using each of the outputs as a key, set the value in the version dictionary
                 #to be the value depending on entry
@@ -129,6 +132,10 @@ def getProtein(identifier, info):
             print "---"
 
 #removes the entries with duplicates of the given property from the given list
+#this function will mostly be used to remove identifier duplicates
+#duplicates occur because ThaleMine creates multiple entries for the same protein if there is more than one piece of information
+#e.g. if I had a query of proteins where I wanted the name of the authors who published about the protein,
+#there would be many entries for AT1G01010.1 since many authors contributed to publication about the protein
 def removeDuplicates(list, propertyName):
     last = "placeholder"
     #initialize the array to append in the loop
