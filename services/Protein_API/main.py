@@ -1,4 +1,3 @@
-import query
 import json
 from intermine.webservice import Service
 
