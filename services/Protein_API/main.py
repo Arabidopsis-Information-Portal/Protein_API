@@ -32,17 +32,8 @@ outputs = [
 #main search function
 def search(parameters):
     if "Identifier" in parameters.keys():
-
         identifierInput = parameters["Identifier"]
-        #print all identifiers when input is blank
-#        if identifierInput == "":
-#            print getAllIdentifiers()
-        #print info of a single protein when input is a single identifier
-#        else:
-            print getProtein(identifierInput, parameters["Output"])
-    #print all identifiers when no identifier is provided
-#    else:
-#        print getAllIdentifiers()
+        print getProtein(identifierInput, parameters["Output"])
 
 #print all names when input is empty
 #(deprecated with the removal of the begin and end parameters)
