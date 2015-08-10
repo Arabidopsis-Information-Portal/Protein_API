@@ -5,7 +5,6 @@ name: protein_api
 version: 0.1
 type: query
 icon: araport_circle.png
-timeout: 60
 main_module: services.Protein_API.main.py #location of main module
 url: https://apps.araport.org/thalemine/begin.do
 description: "A web service that retrieves specific information about a protein given the primary identifier of its mRNA (e.g. AT4G09000.1)"
