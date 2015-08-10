@@ -3,12 +3,6 @@ from intermine.webservice import Service
 
 #query thalemine, the database used to obtain the output information
 service = Service("https://apps.araport.org:443/thalemine/service")
-#add these columns to the query
-query.add_view(
-    "isFragment", "isUniprotCanonical", "length", "molecularWeight", "name",
-    "primaryAccession", "primaryIdentifier", "uniprotName", "uniprotAccession",
-    "mRNA.primaryIdentifier"
-)
 
 #a list of all possible outputs also listed in the metadata
 outputs = [
