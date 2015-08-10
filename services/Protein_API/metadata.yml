@@ -5,7 +5,6 @@ name: protein_api
 version: 0.1
 type: query
 icon: araport_circle.png
-timeout: 60
 main_module: services.Protein_API.main.py #location of main module
 url: https://apps.araport.org/thalemine/begin.do
 description: "A web service that retrieves specific information about a protein given the primary identifier of its mRNA (e.g. AT4G09000.1)"
@@ -14,12 +13,11 @@ tags:
   - Thalemine
 endpoints:
   /search:
-    description: "Returns information about a single protein given its mRNA identifier. The format of the output depends on the output parameter. It can show all available information about the protein or only a single piece of information. Warning: some proteins have isoforms (e.g. AT1G01070.1). In this case, each isoform is represented as an object in the result array."
+    description: "Finds and returns information about a protein given its mRNA identifier. The output is a JSON containing information about a given protein. If all is selected as the output parameter, information about every output is returned. If a specific output is selected, only the information for the specific output is returned. If the output has more than one value, a list of all values will be returned."
     parameters:
       - name: Identifier
         description: "Search for a protein based on an identifier."
         type: string
-        default: AT4G09000.1
         required: true
       - name: Output
         description: "Information to display"
@@ -43,7 +41,7 @@ endpoints:
           - "symbol"
           - "uniprotAccession"
   /list:
-    description: "Returns an array of objects representing proteins and each object contains the mRNA identifier and the name of the protein. These identifiers can then be used in the search endpoint to retrieve more information about the protein. Warning: there are a lot of proteins so this can be very slow (maybe up to a minute)"
+    description: "Returns a JSON listing the mRNA identifiers for all available proteins. These identifiers can then be used in the search endpoint to retrieve more information about the protein."
 requirements:
   - intermine
 sources:

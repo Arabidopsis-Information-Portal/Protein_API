@@ -32,8 +32,17 @@ outputs = [
 #main search function
 def search(parameters):
     if "Identifier" in parameters.keys():
+
         identifierInput = parameters["Identifier"]
-        getProtein(identifierInput, parameters["Output"])
+        #print all identifiers when input is blank
+#        if identifierInput == "":
+#            print getAllIdentifiers()
+        #print info of a single protein when input is a single identifier
+#        else:
+            print getProtein(identifierInput, parameters["Output"])
+    #print all identifiers when no identifier is provided
+#    else:
+#        print getAllIdentifiers()
 
 #print all names when input is empty
 #(deprecated with the removal of the begin and end parameters)
@@ -87,15 +96,12 @@ def getAllIdentifiers():
     #remove duplicate identifiers from the query
     entries = removeDuplicates(entries, "mRNA.primaryIdentifier")
     #initialize the array to append in the loop
-    protein = {}
+    identifiers = []
     for row in entries:
         #append the identifier in each row to the list of identifiers
-        protein["mRNA.primaryIdentifier"] = row["mRNA.primaryIdentifier"]
-        protein["name"] = row["name"]
-        print json.dumps(protein)
-        print "---"
+        identifiers.append(row["mRNA.primaryIdentifier"])
     #json.dumps(parameter) is a function that converts the parameter into JSON format
-    #return json.dumps(identifiers)
+    return json.dumps(identifiers)
 
 #returns info about a protein given an identifier
 def getProtein(identifier, info):
@@ -138,16 +144,24 @@ def getProtein(identifier, info):
                 version[outputs[i]] = entry[outputs[i]]
                 i+=1
             #add this version to the list of proteins
-            print json.dumps(version)
-            print "---"
+            protein.append(version)
+        #if there is only one protein, only return the protein as a single key-value pair
+        #this removes a pair of unnecessary brackets in the final JSON
+        if len(protein) == 1:
+            protein = protein[0]
+        return json.dumps(protein)
     else:
         for entry in noDupes:
             #for each entry, retrieve the wanted information
             infoValue = entry[info]
             #add the information as a key-value pair to the protein list
             i = {info: infoValue}
-            print json.dumps(i)
-            print "---"
+            protein.append(i)
+            #if there is only one protein, only return the protein as a single key-value pair
+            #this removes a pair of unnecessary brackets in the final JSON
+        if len(protein) == 1:
+            protein = protein[0]
+        return json.dumps(protein)
 
 #removes the entries with duplicates of the given property from the given list
 def removeDuplicates(list, propertyName):
@@ -208,4 +222,4 @@ def getProteins(identifierList, info):
 
 #list function (in development)
 def list(parameters):
-    getAllIdentifiers()
+    print getAllIdentifiers()
