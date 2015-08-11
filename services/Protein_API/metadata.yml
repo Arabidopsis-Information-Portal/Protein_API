@@ -21,7 +21,7 @@ endpoints:
         default: AT4G09000.1
         required: true
   /list:
-    description: "Returns an array of objects representing proteins and each object contains the mRNA identifier and the name of the protein. These identifiers can then be used in the search endpoint to retrieve more information about the protein. Warning: there are a lot of proteins so this can be very slow (15 seconds to obtain data, more than 20 minutes to display)"
+    description: "Returns an array of objects representing proteins and each object contains the mRNA identifier and the name of the protein. These identifiers can then be used in the search endpoint to retrieve more information about the protein. Warning: there are a lot of proteins so this can be very slow (15 seconds to obtain data, more than 20 minutes to display on Araport)."
 requirements:
   - intermine
 whitelist:
