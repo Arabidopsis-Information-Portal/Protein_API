@@ -1,2 +1,3 @@
-# Protein_API
-Return basic information about a protein given some search parameters
+# ThaleMine Protein Webservices
+
+These are [Araport](http://www.araport.org) API wrappers around various ThaleMine webservices for retrieving information about proteins.
