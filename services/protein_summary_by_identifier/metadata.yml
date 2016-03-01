@@ -1,0 +1,81 @@
+---
+
+name: protein_summary_by_identifier
+description: Given an identifier and source return summary information about a protein from ThaleMine.
+version: 0.1
+tags:
+    - arabidopsis
+    - protein
+    - ThaleMine
+    - InterMine
+
+authors:
+  - name: Erik Ferlanti
+    email: erik@jcvi.org
+    sponsor_organization: JCVI
+    sponsor_uri: http://www.jcvi.org
+
+type: query
+main_module: services.protein_summary_by_identifier.main.py
+url: https://apps.araport.org/thalemine/service
+validate_request: true
+timeout: 60
+whitelist:
+    - apps.araport.org
+icon: araport.png
+requirements:
+    - intermine
+
+endpoints:
+    /search:
+        description: Return summary information from ThaleMine given a specific protein identifier and source.
+        parameters:
+            - name: identifier
+              description: Protein identifier
+              type: string
+              required: true
+              default: FT_ARATH
+            - name: source
+              description: Data source
+              type: string
+              required: true
+              default: UniProt
+              enum:
+                - 'Araport'
+                - 'UniProt'
+
+    /list:
+        description: Return a list of valid AGI Gene Locus indentifiers
+        parameters:
+            - name: source
+              description: Data source
+              type: string
+              required: true
+              default: Araport
+              enum:
+                  - 'Araport'
+                  - 'UniProt'
+
+sources:
+    - title: ThaleMine
+      description: Intermine-based information warehouse containing essential Arabidopsis Col-0 data sets
+      language: en-us
+      sponsor_organization_name: J. Craig Venter Institute
+      sponsor_uri: http://www.jcvi.org
+      provider_name: Christopher D. Town
+      provider_email: cdtown@jcvi.org
+      uri: https://apps.araport.org/thalemine
+      sources:
+          - title: UniProt
+            description: Comprehensive resource for protein sequence and annotation data
+            provider_name: European Bioinformatics Institute (EMBL-EBI) / SIB Swiss Institute of Bioinformatics / Protein Information Resource (PIR)
+            sponsor_organization_name: National Institutes of Health
+            sponsor_uri: http://www.nih.gov
+            uri: http://www.uniprot.org
+          - title: Araport11 Pre-release 3 (12/2015)
+            description: Araport11 protein sequences
+            sponsor_organization_name: J. Craig Venter Institute
+            sponsor_uri: http://www.jcvi.org/
+            provider_name: Christopher D. Town
+            provider_email: cdtown@jcvi.org
+            uri: https://www.araport.org
