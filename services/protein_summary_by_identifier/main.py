@@ -33,8 +33,8 @@ def search(args):
     query.outerjoin("keywords")
 
     # loop over rows of data to build the JSON object
-    synonyms = []
-    keywords = []
+    synonyms = {}
+    keywords = {}
     found = False
     for row in query.rows():
         protein_id = row["primaryIdentifier"]
@@ -49,9 +49,11 @@ def search(args):
         uniprot_accession = row["uniprotAccession"]
         uniprot_name = row["uniprotName"]
         if row["synonyms.value"]:
-            synonyms.append(row["synonyms.value"])
+            if not synonyms.has_key(row["synonyms.value"]):
+                synonyms[row["synonyms.value"]] = 1
         if row["keywords.name"]:
-            keywords.append(row["keywords.name"])
+            if not keywords.has_key(row["keywords.name"]):
+                keywords[row["keywords.name"]] = 1
         found = True
 
     if found:
@@ -69,8 +71,8 @@ def search(args):
             'secondary_identifier': secondary_identifier,
             'uniprot_accession': uniprot_accession,
             'uniprot_name': uniprot_name,
-            'synonyms': synonyms,
-            'keywords': keywords
+            'synonyms': synonyms.keys(),
+            'keywords': keywords.keys()
         }
         print json.dumps(record, indent=2)
         print '---'
