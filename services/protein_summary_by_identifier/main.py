@@ -1,3 +1,4 @@
+import services.common.tools as tools
 import json
 from intermine.webservice import Service
 
@@ -8,8 +9,11 @@ def search(args):
     args contains a dict with one or key:values
 
     """
-    ident = args["identifier"]
-    source = args["source"]
+    ident_arg = args["identifier"]
+    primaryId = tools.getProteinPrimaryIdentifier(ident_arg)
+    ident = ident_arg
+    if primaryId and primaryId != '':
+        ident = primaryId
 
     # get a new query on the class (table) from the model
     query = service.new_query("Protein")
@@ -22,21 +26,13 @@ def search(args):
     )
 
     # set the constraint value(s)
-    query.add_constraint("dataSets.dataSource.name", "=", source, code = "A")
-    query.add_constraint("primaryIdentifier", "=", ident, code = "B")
+    query.add_constraint("primaryIdentifier", "=", ident, code = "A")
 
     # outer join on synonyms
     query.outerjoin("synonyms")
     query.outerjoin("keywords")
 
     # loop over rows of data to build the JSON object
-    """
-    print row["primaryIdentifier"], row["molecularWeight"], row["length"], row["isFragment"], \
-        row["isUniprotCanonical"], row["name"], row["dataSets.dataSource.name"], \
-        row["primaryAccession"], row["secondaryIdentifier"], row["uniprotAccession"], \
-        row["uniprotName"], row["synonyms.value"], row["keywords.identifier"], row["keywords.name"], \
-        row["keywords.description"], row["keywords.ontology.name"]
-    """
     synonyms = []
     keywords = []
     found = False
@@ -97,6 +93,6 @@ def list(args):
             record = {
                 'identifier': row["primaryIdentifier"],
                 'source': row["dataSets.dataSource.name"]
-            }   
+            }
             print json.dumps(record, indent=2)
             print '---'

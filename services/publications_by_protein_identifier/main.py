@@ -1,3 +1,4 @@
+import services.common.tools as tools
 import json
 from intermine.webservice import Service
 
@@ -8,8 +9,11 @@ def search(args):
     args contains a dict with one or key:values
 
     """
-    ident = args["identifier"]
-    source = args["source"]
+    ident_arg = args["identifier"]
+    primaryId = tools.getProteinPrimaryIdentifier(ident_arg)
+    ident = ident_arg
+    if primaryId and primaryId != '':
+        ident = primaryId
 
     # get a new query on the class (table) from the model
     query = service.new_query("Protein")
@@ -23,7 +27,6 @@ def search(args):
 
     # set the constraint value(s)
     query.add_constraint("primaryIdentifier", "=", ident, code = "A")
-    query.add_constraint("dataSets.dataSource.name", "=", source, code = "B")
 
     # loop over rows of data to build the JSON object
     for row in query.rows():

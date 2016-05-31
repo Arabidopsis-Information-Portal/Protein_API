@@ -1,8 +1,8 @@
 ---
 
 name: protein_summary_by_identifier
-description: Given an identifier and source return summary information about a protein from ThaleMine.
-version: 0.1
+description: Given an identifier return summary information about a protein from ThaleMine.
+version: 0.2
 tags:
     - arabidopsis
     - protein
@@ -28,21 +28,13 @@ requirements:
 
 endpoints:
     /search:
-        description: Return summary information from ThaleMine given a specific protein identifier and source.
+        description: Return summary information from ThaleMine given a specific protein identifier.
         parameters:
             - name: identifier
               description: Protein identifier
               type: string
               required: true
               default: FT_ARATH
-            - name: source
-              description: Data source
-              type: string
-              required: true
-              default: UniProt
-              enum:
-                - 'Araport'
-                - 'UniProt'
 
     /list:
         description: Return a list of valid AGI Gene Locus indentifiers
